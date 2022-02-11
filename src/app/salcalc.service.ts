@@ -32,6 +32,13 @@ export class SalcalcService {
 
   constructor(private http:HttpClient, private srvMsg:MessageService) { }
 
+  getUpper(val:string):string{
+
+    if(!val) return '';
+
+    return val.toUpperCase();
+  }
+
   getEmps(): Observable<EmpData[]>{
     //const emps = of(EMPS);
     //this.srvMsg.add('SalcalcService : All done!');

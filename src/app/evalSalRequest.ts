@@ -2,6 +2,7 @@
 export class EvalSalRequest {
 
   action:string='get';
+  rate_freq:string ='hour';
   hpday:number=8;
   dpweek:number=5;
   maxHpWeek:number=40;

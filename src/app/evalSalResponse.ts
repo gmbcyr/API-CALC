@@ -1,6 +1,8 @@
 
 export class EvalSalResponse {
 
+  statusCode:number=300;
+
 
 }
 

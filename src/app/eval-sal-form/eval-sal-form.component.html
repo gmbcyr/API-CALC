@@ -19,9 +19,9 @@
           <label for="rateper">Rate Per</label>
           <select class="form-control" id="rateper"
                   required
-                  [(ngModel)]="model.is_annual_rate" name="rateper"
+                  [(ngModel)]="model.rate_freq" name="rateper"
                   #rateper="ngModel">
-            <option *ngFor="let item of rate_freqs | keyvalue" [value]="item.value">{{item.key}}</option>
+            <option *ngFor="let item of rate_freqs | keyvalue" [value]="item.key">{{item.value}}</option>
           </select>
           <div [hidden]="rateper.valid || rateper.pristine" class="alert alert-danger">
             Rate Per period is required
@@ -81,6 +81,9 @@
       <br>
       <button class="btn btn-primary" (click)="submitted=false">New Eval</button>
     </div>
+
+    <app-eval-sal-pay-details [model] = "payPeriod"></app-eval-sal-pay-details>
+    <app-eval-sal-pay-details [model] = "payYear"></app-eval-sal-pay-details>
 
 
   </div>

@@ -1,0 +1,42 @@
+
+<div class="container" [hidden]="!model?.pay_freq">
+  <h1>Gross Income: {{model?.pay_detail?.gain_gross | currency}} per {{model?.pay_freq}}
+    <img [src] ="imgPath+'/more.png'" style="width: 36px;height: 36px;" (click) = "expandView()" [hidden]="showDetails">
+
+  <img [src] ="imgPath+'/less.png'" style="width: 36px;height: 36px;" (click) = "expandView()" [hidden]="!showDetails">
+  </h1>
+
+  <div [hidden]="!showDetails">
+
+    <form (ngSubmit)="expandView()" #theForm="ngForm">
+      <div class="form-group">
+        <label for="gros">Gross pay : {{model?.pay_detail?.gain_gross | currency}}</label>
+        <input type="text" class="form-control" id="gros"
+        [ngModel]="model?.pay_detail?.gain_gross | currency"
+               [disabled]="true" name="gros" *ngIf="false">
+
+      </div>
+
+      <div class="form-group">
+        <label for="totalTax">Total Tax: {{model?.pay_detail?.total_tax | currency}}</label>
+        <input type="text" class="form-control" id="totalTax"
+        [ngModel]="model?.pay_detail?.total_tax | currency"
+               [disabled]="true" name="totalTax" *ngIf="false">
+
+      </div>
+
+
+      <div class="form-group">
+        <label for="netGain">Net Gain: {{model?.pay_detail?.gain_net | currency}}</label>
+        <input type="text" class="form-control" id="netGain"
+        [ngModel]="model?.pay_detail?.total_tax | currency"
+               [disabled]="true" name="netGain" *ngIf="false">
+
+      </div>
+
+
+    </form>
+  </div>
+
+
+</div>

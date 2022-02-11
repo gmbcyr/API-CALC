@@ -18,6 +18,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HeroFormComponent } from './hero-form/hero-form.component';
 import { EvalSalFormComponent } from './eval-sal-form/eval-sal-form.component';
+import { EvalSalPayDetailsComponent } from './eval-sal-pay-details/eval-sal-pay-details.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EvalSalFormComponent } from './eval-sal-form/eval-sal-form.component';
     HeroDetailComponent,
     HeroSearchComponent,
     HeroFormComponent,
-    EvalSalFormComponent
+    EvalSalFormComponent,
+    EvalSalPayDetailsComponent
   ],
   imports: [
     BrowserModule,
