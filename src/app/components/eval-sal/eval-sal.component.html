@@ -1,0 +1,15 @@
+<h2>Eval Sal with ngrx Component</h2>
+
+<app-eval-sal-form
+[model]= "(model$ | async) "
+[pay_freqs]="(pay_freqs$ | async)"
+[rate_freqs]="(rate_freqs$ | async) || {}"
+[status_m]="(status_m$ | async) || {}"
+(evalSal) = "handleGetRequest($event)"
+
+>
+
+</app-eval-sal-form>
+
+<app-eval-sal-pay-details [model] = "(payPeriod$ | async)"></app-eval-sal-pay-details>
+<app-eval-sal-pay-details [model] = "(payYear$ | async) "></app-eval-sal-pay-details>

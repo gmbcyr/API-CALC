@@ -2,43 +2,53 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryDataService } from './services/in-memory-data.service';
+import { CommonModule } from '@angular/common';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { FormsModule,ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 
 
-import { SalcalcComponent } from './salcalc/salcalc.component';
-import { SalcalcDetailComponent } from './salcalc-detail/salcalc-detail.component';
-import { MessagesComponent } from './messages/messages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
-import { HeroFormComponent } from './hero-form/hero-form.component';
-import { EvalSalFormComponent } from './eval-sal-form/eval-sal-form.component';
-import { EvalSalPayDetailsComponent } from './eval-sal-pay-details/eval-sal-pay-details.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EvalSalFormComponent } from './components/eval-sal-form/eval-sal-form.component';
+import { EvalSalPayDetailsComponent } from './components/eval-sal-pay-details/eval-sal-pay-details.component';
+import { EvalSalComponent } from './components/eval-sal/eval-sal.component';
+import {SalcalcService} from './services/salcalc.service';
+import { EvalSalEffects } from './effects/eval-sal.effects';
+import {reducers} from './reducers';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SalcalcComponent,
-    SalcalcDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    HeroSearchComponent,
-    HeroFormComponent,
     EvalSalFormComponent,
-    EvalSalPayDetailsComponent
+    EvalSalPayDetailsComponent,
+    EvalSalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule/*,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    StoreModule.forRoot(reducers, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
+    }),
+    EffectsModule.forRoot([EvalSalEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forFeature([EvalSalEffects]),
+    /*,/*
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
@@ -47,7 +57,8 @@ import { EvalSalPayDetailsComponent } from './eval-sal-pay-details/eval-sal-pay-
     )*/
 
   ],
-  providers: [],
+  //exports:[FormsModule,ReactiveFormsModule],
+  providers: [SalcalcService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

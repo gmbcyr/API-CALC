@@ -98,9 +98,36 @@
             ],
             "scripts": []
           }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "api-calc:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "api-calc:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "api-calc"
+  "defaultProject": "api-calc",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics",
+    "cache": {
+      "enabled": false
+    }
+  }
 }
